@@ -11,6 +11,7 @@ class Solution:
                 dictionary[num] = 1
         
         max_heap = [(-value, key) for key, value in dictionary.items()]
+        heapq.heapify(max_heap)
 
         for index in range(k):
             value, key = heapq.heappop(max_heap)
