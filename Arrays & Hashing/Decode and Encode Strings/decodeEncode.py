@@ -9,11 +9,30 @@ class Codec:
         result = ""
 
         for word in strs:
-            result += "!" + str(len(word)) + word  # Fixed: str(len(word))
+            result += str(len(word)) +  "!" + word  # Fixed: str(len(word))
         
         return result
 
-# Test
-dummy_input = ["Hello", "World"]
-codec = Codec()
-print(codec.encode(dummy_input))  # Output: encoded string
+    
+    def decode(self, strs: str) -> List[str]:
+        if len(strs) == 0 or strs == "":
+            return [strs]
+        
+        result = []
+        index = 0
+
+        while index < len(strs):
+            secondI = index
+            
+            while secondI != "!":
+                secondI += 1
+            
+            length = int(str[index : secondI])
+            word = str[secondI + 1: secondI + 1 + length]
+
+            result.append(word)
+            index = secondI + 1 + length
+        
+        return result
+
+
